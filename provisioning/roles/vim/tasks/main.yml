@@ -1,0 +1,12 @@
+- name: download NeoBundle installer
+  get_url: url=https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh dest=/tmp/neobundle_install.sh
+
+- name: install NeoBundle
+  shell: >
+    sh /tmp/neobundle_install.sh
+
+- name: place vimrc
+  template: src=vimrc.j2 dest=~/.vimrc force=True
+
+- name: place gvimrc
+  template: src=gvimrc.j2 dest=~/.gvimrc force=True

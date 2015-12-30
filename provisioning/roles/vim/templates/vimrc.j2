@@ -1,0 +1,171 @@
+" START##setting for neobundle
+set nocompatible
+filetype plugin indent off
+if has ('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  call neobundle#begin(expand('~/.vim/bundle/'))
+endif
+
+" Require:
+NeoBundleFetch 'Shogo/neobundle.vim'
+
+" Optional:
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Rip-Rip/clang_complete'
+NeoBundle "Shougo/unite.vim"
+NeoBundle "ctrlpvim/ctrlp.vim"
+NeoBundle 'Shougo/vimproc', {
+  \ 'build' : {
+  \     'mac' : 'make -f make_mac.mak',
+  \   },
+  \ }
+
+NeoBundle "kana/vim-operator-user"
+NeoBundle "rhysd/vim-clang-format"
+
+filetype plugin indent on
+NeoBundleCheck
+call neobundle#end()
+
+" Normally we use vim-extensions. If you want true vi-compatibility
+" remove change the following statements
+
+set nocompatible        " Use Vim defaults instead of 100% vi compatibility
+set backspace=2         " more powerful backspacing
+
+filetype on
+set enc=utf-8
+set fenc=utf-8
+set fencs=utf-8,iso-2022-jp,euc-jp,cp932
+
+set autoindent
+set ruler
+set number
+set showcmd
+set nobackup
+set undodir=/tmp
+set backupdir=/tmp
+set cursorline
+set viminfo+=n/tmp/viminfo.txt
+
+syntax enable
+
+":colorscheme desert
+":colorscheme wombat
+
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set showmatch
+set matchtime=15
+set tabpagemax=100
+
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+
+set title
+set tag=./tags
+
+" set fdm=marker
+set ambiwidth=double
+
+set backspace=start,indent,eol
+
+let g:pdv_cfg_Author = "Matsuoka Hideki <h-matsuoka@techgarage.jp>"
+let g:pdv_cfg_Copyright = "techGarage (CONTACT info@techgarage.jp)"
+let g:pdv_cfg_License = "PHP Version 3.0 {@link http://www.php.net/license/3_0.txt}"
+inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-P> :call PhpDocSingle()<CR>
+vnoremap <C-P> :call PhpDocRange()<CR>
+
+set backspace=start,indent,eol
+
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+":set background=dark
+":colorscheme wombat
+
+set ignorecase
+set smartcase
+set laststatus=2
+
+"map <F5> <ESC>:bp<CR>
+"map <F6> <ESC>:bp<CR>
+"map <F5> <ESC>:Project<CR>
+"imap <C-Space> <C-x><C-o>
+
+let &t_ti.="\e[1 q"
+let &t_SI.="\e[5 q"
+let &t_EI.="\e[1 q"
+let &t_te.="\e[0 q"
+
+let g:clang_use_library=1
+let g:clang_debug=1
+if has('mac')
+  let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+endif
+let g:clang_user_options = '-std=c++11'
+
+" insert modeで開始
+let g:unite_enable_start_insert = 1
+
+" 大文字小文字を区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+
+" grep検索
+nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+" カーソル位置の単語をgrep検索
+nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+
+" grep検索結果の再呼出
+nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+
+" unite grep に ag(The Silver Searcher) を使う
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+"yank ring
+nmap ,y :YRShow<CR>
+
+" NERDTree Settings
+let g:NERDTreeShowLineNumbers=1
+let g:NERDTreeWinSize=45
+
+"
+" Unite Settings.
+"
+" insert modeで開始
+let g:unite_enable_start_insert = 1
+
+" 大文字小文字を区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+
+" grep検索
+nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+" カーソル位置の単語をgrep検索
+nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+
+" grep検索結果の再呼出
+nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+
+" unite grep に ag(The Silver Searcher) を使う
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+map ,x <Plug>(operator-clang-format)
