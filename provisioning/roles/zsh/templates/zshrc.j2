@@ -1,0 +1,177 @@
+export PATH="/usr/local/bin:$PATH"
+
+alias rm='rm -i'
+alias ll='ls -lGF'
+alias ls='ls -GF'
+alias g='git'
+alias findervisible='defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder;'
+alias finderunvisible='defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder;'
+
+# users generic .zshrc file for zsh(1)
+
+## Environment variable configuration
+#
+# LANG
+#
+export LANG=ja_JP.UTF-8
+
+## Default shell configuration
+#
+# set prompt
+#
+autoload colors
+colors
+
+# auto change directory
+#
+setopt auto_cd
+
+# auto directory pushd that you can get dirs list by cd -[tab]
+#
+setopt auto_pushd
+
+# command correct edition before each completion attempt
+#
+setopt correct
+
+# compacked complete list display
+#
+setopt list_packed
+
+# no remove postfix slash of command line
+#
+setopt noautoremoveslash
+
+# no beep sound when complete list displayed
+#
+setopt nolistbeep
+
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+
+## Keybind configuration
+#
+# emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes
+# to end of it)
+#
+bindkey -e
+
+# historical backward/forward search with linehead string binded to ^P/^N
+#
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^p" history-beginning-search-backward-end
+bindkey "^n" history-beginning-search-forward-end
+bindkey "\\ep" history-beginning-search-backward-end
+bindkey "\\en" history-beginning-search-forward-end
+
+## Command history configuration
+#
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt hist_ignore_dups # ignore duplication command history list
+setopt share_history # share command history data
+
+## Completion configuration
+#
+autoload -U compinit
+compinit
+
+## Alias configuration
+#
+# expand aliases before completing
+#
+setopt complete_aliases # aliased ls needs if file/dir completions work
+
+alias where="command -v"
+alias j="jobs -l"
+
+alias la="ls -a"
+alias lf="ls -F"
+
+alias du="du -h"
+alias df="df -h"
+
+alias su="su -l"
+
+## terminal configuration
+#
+unset LSCOLORS
+case "${TERM}" in
+  xterm)
+    export TERM=xterm-color
+    ;;
+  kterm)
+    export TERM=kterm-color
+    # set BackSpace control character
+    stty erase
+    ;;
+  cons25)
+    unset LANG
+    export LSCOLORS=gxfxcxdxbxegedabagacad
+    export LS_COLORS='di=36;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
+    zstyle ':completion:*' list-colors \
+           'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
+    ;;
+esac
+
+# set terminal title including current directory
+#
+case "${TERM}" in
+  kterm*|xterm*)
+    precmd() {
+      echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
+    }
+    export LSCOLORS=gxfxcxdxbxegedabagacad
+    export LS_COLORS='di=36;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
+    zstyle ':completion:*' list-colors \
+           'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
+    ;;
+esac
+
+## vcs_infoロード
+#autoload -Uz vcs_info
+## # PROMPT変数内で変数参照する
+#setopt prompt_subst
+#
+#export PC_NUM=`hostname | cut -d'-' -f2`
+#
+## vcsの表示
+#zstyle ':vcs_info:*' formats '%s][* %F{green}%b%f'
+#zstyle ':vcs_info:*' actionformats '%s][* %F{green}%b%f(%F{red}%a%f)'
+## プロンプト表示直前にvcs_info呼び出し
+#precmd() {
+#  vcs_info
+#  DELIM=`echo "\xF0\x9F\x90\x9A"`
+#
+#  if [ -n "${vcs_info_msg_0_}" ];
+#  then;
+#    PROMPT='[${PC_NUM}-${vcs_info_msg_0_}]:%~/%f ${DELIM}\ '
+#  else
+#    PROMPT='[${PC_NUM}]:%~/%f ${DELIM}\ '
+#  fi
+#}
+
+#function do_enter() {
+#  if [ -n "$BUFFER" ]; then
+#    zle accept-line
+#    return 0
+#  fi
+#  echo
+#  ls
+#  # ↓おすすめ
+#  # ls_abbrev
+#  if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+#    echo
+#    echo -e "\e[0;33m--- git status ---\e[0m"
+#    git status -sb
+#  fi
+#  zle reset-prompt
+#  return 0
+#}
+
+#zle -N do_enter
+#bindkey '^m' do_enter

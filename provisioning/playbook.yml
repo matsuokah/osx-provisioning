@@ -1,9 +1,10 @@
 ---
 - name: Local Provisioner
   hosts: localhost
-  sudo: yes
+  sudo: no
   roles:
     - common
     - brew
     - brew-cask
+    - zsh
 #    - defaults

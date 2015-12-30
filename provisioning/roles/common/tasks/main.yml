@@ -1,7 +1,6 @@
 - name: update brew
   register: result
   ignore_errors: True
-  sudo: no
   command: >
     brew update
 
@@ -10,7 +9,6 @@
   when: result|failed
 
 - name: proceed brew installer
-  sudo: no
   command: >
     ruby /tmp/brew_install
   when: result|failed

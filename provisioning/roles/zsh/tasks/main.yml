@@ -1,0 +1,103 @@
+---
+- name: search path zsh
+  command: >
+    which zsh
+  register: which_zsh
+  ignore_errors: True
+
+- debug: msg="{{which_zsh.stdout}}"
+
+- name: grep shells
+  shell: >
+    cat /etc/shells | grep "{{which_zsh.stdout}}"
+  register: grep_shells 
+  ignore_errors: True
+
+- debug: msg="{{grep_shells}}"
+  when: grep_shells.rc == 0
+
+- name: append shells
+  shell: >
+    echo {{which_zsh.stdout}} >> /etc/shells
+  when: grep_shells.rc != 0
+
+- name: change login shell
+  shell: >
+    chpass -s {{which_zsh.stdout}}
+
+- stat: path=~/.zsh
+  register: zshdir
+
+- name: create .zsh directory
+  file: name=~/.zsh state=directory
+  when: not zshdir.stat.exists
+
+- stat: path=~/.antigen
+  register: antigen
+
+- name: create .zsh directory
+  command: rm -rf ~/.antigen
+  when: antigen.stat.exists
+
+- name: download antigen
+  get_url: url=https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh dest=~/.zsh/antigen.zsh
+
+- stat: path=~/.zshrc
+  register: zshrc
+
+- name: remove zshrc
+  command: rm -rf ~/.zshrc
+  when: zshrc.stat.exists
+
+- name: place zshrc
+  template: src=zshrc.j2 dest=~/.zshrc
+
+- name: set append command
+  set_fact:
+    source_antigen: 'source ~/.zsh/antigen.zsh'
+
+- name: grep command
+  shell: >
+    cat ~/.zshrc | grep "{{source_antigen}}"
+  register: grep_command
+  ignore_errors: True
+
+- name: append source antigen
+  shell: >
+    echo "{{source_antigen}}" >> ~/.zshrc
+  when: grep_command.rc != 0
+
+- name: install prezto through antigen
+  shell: >
+    source ~/.zshrc && antigen bundle sorin-ionescu/prezto
+    executable={{which_zsh.stdout}}
+  ignore_errors: True
+
+- name: create symlink
+  file: src=~/.antigen/repos/.zprezto dest=~/.zprezto state=link
+
+- stat: path=/tmp/.zshrc
+  register: tmp_zshrc
+
+- name: create .zsh directory
+  command: rm -rf /tmp/.zshrc
+  when: tmp_zshrc.stat.exists
+
+- name: rename zshrc 
+  command: mv ~/.zshrc /tmp/.zshrc
+
+- name: apply prezto setting
+  shell: >
+    setopt EXTENDED_GLOB; for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do; ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"; done;
+    executable={{which_zsh.stdout}}
+
+- name: append before settings
+  shell: >
+    cat /tmp/.zshrc >> ~/.zshrc
+
+- name: get path of original preztorc 
+  command: readlink ~/.zpreztorc
+  register: zpreztorc_path
+
+- name: place preztorc_template
+  template: src=zpreztorc.j2 dest={{zpreztorc_path.stdout}} force=True
