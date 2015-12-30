@@ -1,0 +1,16 @@
+homebrew_cask_packages:
+  - alfred
+  - bettertouchtool
+  - caffeine
+  - dash
+  - google-chrome
+  - google-japanese-ime
+  - iterm2
+  - karabiner
+  - kindle
+  - sequel-pro
+  - skitch
+  - skype
+  - slack
+  - vagrant
+  - virtualbox

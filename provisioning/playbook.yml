@@ -4,6 +4,6 @@
   sudo: yes
   roles:
     - common
-#    - brew
-#    - brew-cask
+    - brew
+    - brew-cask
 #    - defaults

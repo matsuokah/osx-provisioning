@@ -1,0 +1,19 @@
+---
+- name: tap external homebrew repositories
+  homebrew_tap: tap={{ item }} state=present
+  with_items: homebrew_repositories
+  when: homebrew_repositories
+  sudo: false
+
+- name: update homebrew
+  homebrew: update_homebrew=yes
+  sudo: false
+
+- name: install and upgrade homebrew packages
+  homebrew:
+    name={{ item.name | default(item) }}
+    state={{ item.state | default('latest') }}
+    install_options={{ item.install_option | default('') }}
+  with_items: homebrew_packages
+  when: homebrew_packages
+  sudo: false

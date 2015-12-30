@@ -5,4 +5,4 @@ show_context
 
 cd ${MYSTAGE_HOME}/provisioning
 
-ansible-playbook playbook.yml -i hosts -K
+HOMEBREW_CASK_OPTS="--appdir=/Applications" ansible-playbook playbook.yml -i hosts -K
