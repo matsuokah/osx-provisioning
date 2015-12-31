@@ -9,6 +9,8 @@
     - brew-cask
 
     # Configurations
+    - git
     - vim
+    - xcode
     - zsh
 #    - defaults
