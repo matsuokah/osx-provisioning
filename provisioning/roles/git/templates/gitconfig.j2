@@ -1,0 +1,15 @@
+[user]
+  email = matsuoka.hide@gmail.com
+  name = Hideki Matsuoka
+[core]
+  autocrlf = input
+  editor = vim -c \"set fenc=utf-8\"
+  excludesfile = ~/.gitignore_global
+[push]
+  default = matching
+[alias]
+  l = log --graph --name-status --pretty=format:\"%C(red)%h %C(green)%an %Creset%s %C(yellow)%d%Creset\"
+[filter "lfs"]
+  clean = git lfs clean %f
+  smudge = git lfs smudge %f
+  required = true

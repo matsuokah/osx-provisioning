@@ -1,0 +1,5 @@
+- name: deploy gitconfig
+  templates: src=gitconfig.j2 dest=~/.gitconfig
+
+- name: deploy gitglobal ignore
+  templates: src=gitignore_global.j2 dest=~/.gitignore_global
