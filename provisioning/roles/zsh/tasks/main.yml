@@ -49,7 +49,7 @@
   command: rm -rf ~/.zshrc
   when: zshrc.stat.exists
 
-- name: place zshrc
+- name: deploy zshrc
   template: src=zshrc.j2 dest=~/.zshrc
 
 - name: set append command
@@ -99,5 +99,5 @@
   command: readlink ~/.zpreztorc
   register: zpreztorc_path
 
-- name: place preztorc_template
+- name: deploy preztorc_template
   template: src=zpreztorc.j2 dest={{zpreztorc_path.stdout}} force=True

@@ -5,8 +5,8 @@
   shell: >
     sh /tmp/neobundle_install.sh
 
-- name: place vimrc
+- name: deploy vimrc
   template: src=vimrc.j2 dest=~/.vimrc force=True
 
-- name: place gvimrc
+- name: deploy gvimrc
   template: src=gvimrc.j2 dest=~/.gvimrc force=True
