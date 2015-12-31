@@ -1,11 +1,14 @@
 ---
-- name: Local Provisioner
+- name: OSX Local Provisioner
   hosts: localhost
   sudo: no
   roles:
+    # App Installations
     - common
     - brew
     - brew-cask
-    - zsh
+
+    # Configurations
     - vim
+    - zsh
 #    - defaults
