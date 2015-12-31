@@ -1,10 +1,13 @@
 homebrew_cask_packages:
+  - 1password
   - alfred
   - bettertouchtool
   - caffeine
   - dash
+  - gas-mask
   - google-chrome
   - google-japanese-ime
+  - intellij-idea
   - iterm2
   - karabiner
   - kindle
