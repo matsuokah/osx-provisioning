@@ -2,6 +2,7 @@
 homebrew_repositories: []
 
 homebrew_packages:
+  - ag
   - autojump
   - macvim
   - node
