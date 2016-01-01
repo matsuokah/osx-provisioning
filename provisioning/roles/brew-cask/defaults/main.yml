@@ -3,6 +3,7 @@ homebrew_cask_packages:
   - alfred
   - bettertouchtool
   - caffeine
+  - dropbox
   - dash
   - gas-mask
   - google-chrome
