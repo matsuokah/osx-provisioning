@@ -1,0 +1,130 @@
+#
+# see also https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/defaults.1.html 
+# 
+
+mac_defaults_settings:
+  - {
+    domain: com.apple.ImageCapture,
+    key: disableHotPlug,
+    type: bool,
+    value: false,
+  }
+  # Finder
+  - {
+    domain: com.apple.finder,
+    key: NewWindowTarget,
+    type: string,
+    value: PfDe,
+  }
+  - {
+    domain: com.apple.finder,
+    key: NewWindowTargetPath,
+    type: string,
+    value: "{{ ansible_user_dir }}/Desktop",
+  }
+  - {
+    domain: com.apple.finder,
+    key: ShowExternalHardDrivesOnDesktop,
+    type: bool,
+    value: true,
+  }
+  - {
+    domain: com.apple.finder,
+    key: ShowMountedServersOnDesktop,
+    type: bool,
+    value: true,
+  }
+  - {
+    domain: com.apple.finder,
+    key: ShowRemovableMediaOnDesktop,
+    type: bool,
+    value: true,
+  }
+  - {
+    domain: com.apple.finder,
+    key: ShowStatusBar,
+    type: bool,
+    value: true,
+  }
+  - {
+    domain: com.apple.finder,
+    key: ShowPathbar,
+    type: bool,
+    value: true,
+  }
+  - {
+    domain: com.apple.finder,
+    key: AppleShowAllFiles,
+    type: bool,
+    value: true,
+  }
+  # Trackpad
+
+  # Enable clicking by tap
+  - {
+    domain: com.apple.driver.AppleBluetoothMultitouch.trackpad,
+    key: Clicking,
+    type: int,
+    value: 1,
+  }
+
+  # Enable Look up & data detectors with The Three Finger Tap
+  - {
+    domain: com.apple.driver.AppleBluetoothMultitouch.trackpad,
+    key: TrackpadThreeFingerTapGesture,
+    type: int,
+    value: 2,
+  }
+
+  # Dock
+  - {
+    domain: com.apple.dock,
+    key: autohide,
+    type: bool,
+    value: true,
+  }
+  - {
+    domain: com.apple.dock,
+    key: magnification,
+    type: bool,
+    value: false,
+  }
+  - {
+    domain: com.apple.dock,
+    key: orientation,
+    type: string,
+    value: "left",
+  }
+  - {
+    domain: com.apple.dock,
+    key: tilesize,
+    type: int,
+    value: 50,
+  }
+
+mac_global_domain_defaults_settings:
+  - {
+    key: InitialKeyRepeat,
+    type: int,
+    value: 13,
+  }
+  - {
+    key: KeyRepeat,
+    type: int,
+    value: 3,
+  }
+  - {
+    key: com.apple.trackpad.scaling,
+    type: float,
+    value: 2.5,
+  }
+  - {
+    key: NSDocumentSaveNewDocumentsToCloud,
+    type: bool,
+    value: false,
+  }
+  - {
+    key: AppleShowAllExtensions,
+    type: bool,
+    value: true
+  }

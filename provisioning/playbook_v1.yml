@@ -9,7 +9,7 @@
     - brew-cask
 
     # Configurations
-    - defaults
+    - defaults_v1
     - git
     - vim
     - xcode

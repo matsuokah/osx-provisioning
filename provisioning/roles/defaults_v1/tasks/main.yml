@@ -1,0 +1,11 @@
+- name: 
+  command: >
+    defaults write {{ item.domain }} {{ item.key }} -{{ item.type }} {{ item.value }}
+  with_items: mac_defaults_settings
+  when: mac_defaults_settings
+
+- name: 
+  command: >
+    defaults write -g {{ item.key }} -{{ item.type }} {{ item.value }}
+  with_items: mac_global_domain_defaults_settings
+  when: mac_global_domain_defaults_settings
