@@ -7,6 +7,10 @@
 
 - debug: msg="{{which_zsh.stdout}}"
 
+#
+# login shell settings, you will be ased user's password when system switches to zsh.
+#
+
 - name: grep shells
   shell: >
     cat /etc/shells | grep "{{which_zsh.stdout}}"
@@ -25,6 +29,10 @@
   shell: >
     chpass -s {{which_zsh.stdout}}
 
+#
+# install prezto
+#
+
 - stat: path=~/.zsh
   register: zshdir
 
@@ -40,17 +48,10 @@
   when: antigen.stat.exists
 
 - name: download antigen
-  get_url: url=https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh dest=~/.zsh/antigen.zsh
-
-- stat: path=~/.zshrc
-  register: zshrc
-
-- name: remove zshrc
-  command: rm -rf ~/.zshrc
-  when: zshrc.stat.exists
+  get_url: url=https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh dest=~/.zsh/antigen.zsh force=True
 
 - name: deploy zshrc
-  template: src=zshrc.j2 dest=~/.zshrc
+  template: src=zshrc.j2 dest=~/.zshrc force=True
 
 - name: set append command
   set_fact:
