@@ -3,14 +3,5 @@
   hosts: localhost
   sudo: no
   roles:
-    # App Installations
-    - common
-    - brew
-    - brew-cask
-
     # Configurations
     - defaults_v1
-    - git
-    - vim
-    - xcode
-    - zsh

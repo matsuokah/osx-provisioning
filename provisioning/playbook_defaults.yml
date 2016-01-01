@@ -1,0 +1,7 @@
+---
+- name: OSX Local Provisioner
+  hosts: localhost
+  sudo: no
+  roles:
+    # Configurations
+    - defaults

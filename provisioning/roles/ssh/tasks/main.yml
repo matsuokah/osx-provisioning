@@ -1,0 +1,2 @@
+- name: create .ssh directory to {{ansible_user_dir}}
+  file: src={{ansible_user_dir}}/ssh dest={{ansible_user_dir}}/.ssh state=link force=True

@@ -2,15 +2,21 @@
 - name: OSX Local Provisioner
   hosts: localhost
   sudo: no
+  pre_tasks:
+    - stat: path=~/.ssh
+      register: ssh 
   roles:
     # App Installations
-    - common
-    - brew
-    - brew-cask
+    #- common
+    #- brew
+    #- brew-cask
 
     # Configurations
-    - defaults
-    - git
-    - vim
-    - xcode
-    - zsh
+    #- git
+    #- vim
+    #- xcode
+    #- zsh
+    - {
+      role: ssh,
+      when: not ssh.stat.exists
+    }
