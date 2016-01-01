@@ -7,15 +7,15 @@
       register: ssh 
   roles:
     # App Installations
-    #- common
-    #- brew
-    #- brew-cask
+    - common
+    - brew
+    - brew-cask
 
     # Configurations
-    #- git
-    #- vim
-    #- xcode
-    #- zsh
+    - git
+    - vim
+    - xcode
+    - zsh
     - {
       role: ssh,
       when: not ssh.stat.exists
