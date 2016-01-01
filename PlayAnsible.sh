@@ -24,4 +24,4 @@ fi
 pa_echo "Doing playbook is ${DEFAULTS_PLAYBOOK}, which is depending ansible version"
 ansible-playbook ${DEFAULTS_PLAYBOOK} -i hosts
 
-osascript -e 'display notification "Success full" with title "osx-provisioning"'
+osascript -e 'display notification "Successfull prease restart or re-login" with title "osx-provisioning"'
