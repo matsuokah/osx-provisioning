@@ -106,7 +106,7 @@ mac_global_domain_defaults_settings:
   - {
     key: InitialKeyRepeat,
     type: int,
-    value: 13,
+    value: 15,
   }
   - {
     key: KeyRepeat,
