@@ -3,8 +3,8 @@ homebrew_cask_packages:
   - alfred
   - bettertouchtool
   - caffeine
-  - dropbox
   - dash
+  - dropbox
   - gas-mask
   - google-chrome
   - google-japanese-ime
@@ -12,6 +12,7 @@ homebrew_cask_packages:
   - iterm2
   - karabiner
   - kindle
+  - music-manager
   - sequel-pro
   - skitch
   - skype
