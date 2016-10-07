@@ -1,2 +1,11 @@
-colorscheme desert
+colorscheme solarized
 set guifont=Consolas:h11
+
+
+augroup FocusTransparancy
+  autocmd!
+  if has('mac')
+    autocmd FocusGained * colorscheme solarized
+    autocmd FocusGained * colorscheme desert
+  endif
+augroup END
