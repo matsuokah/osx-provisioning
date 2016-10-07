@@ -1,0 +1,19 @@
+---
+- name: signout mas
+  shell: >
+    mas signout
+
+- name: signin to mas
+  shell: >
+    mas signin {{appstore_id}} "{{appstore_password}}"
+
+- name: install applications
+  shell: >
+    mas install {{item.store_hash}}
+  with_items: mas_applications
+  when: mas_applications
+  run_once: true
+
+- name: upgrade applications
+  shell: >
+    mas upgrade
