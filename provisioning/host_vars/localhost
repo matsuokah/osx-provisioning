@@ -1,0 +1,4 @@
+appstore_id: YOUR_APP_STORE_ID
+appstore_password: YOUR_APP_STORE_PASSWORD
+
+# vim:ft=ansible:
