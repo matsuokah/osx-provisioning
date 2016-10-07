@@ -1,10 +1,20 @@
+
+SCRIPT_DIR=$$(pwd)/scripts
+
 .PHONY: all
-all : install_ansible play_ansible
+all: setup provision
 
-.PHONY: install_ansible
-install_ansible :
-	@./InstallAnsible.sh
 
-.PHONY: play_ansible
-play_ansible :
-	@./PlayAnsible.sh
+.PHONY: setup
+setup: check.xcode
+	@$(SCRIPT_DIR)/InstallAnsible.sh
+	@$(SCRIPT_DIR)/UpdateAnsible.sh
+
+.PHONY: provision
+provision: check.xcode
+	@$(SCRIPT_DIR)/PlayAnsible.sh
+	@$(SCRIPT_DIR)/NotifyFinished.sh
+
+.PHONY: check.xcode
+check.xcode:
+	@$(SCRIPT_DIR)/CheckXcode.sh
