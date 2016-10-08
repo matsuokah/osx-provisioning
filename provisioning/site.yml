@@ -9,14 +9,15 @@
     # App Installations
     - brew
     - defaults
-      #    - brew-cask
-      #
-      #    # Configurations
-      #    - git
-      #    - vim
-      #    - xcode
-      #    - zsh
-      #    - {
-      #      role: ssh,
-      #      when: not ssh.stat.exists
-      #    }
+    - mas
+    - brew-cask
+
+    # Configurations
+    - git
+    - vim
+    - xcode
+    - zsh
+    - {
+      role: ssh,
+      when: not ssh.stat.exists
+    }

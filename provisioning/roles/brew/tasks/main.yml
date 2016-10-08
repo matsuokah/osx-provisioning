@@ -23,11 +23,11 @@
   homebrew_tap: tap={{ item }} state=present
   with_items: homebrew_repositories
   when: homebrew_repositories
-  sudo: false
+  sudo: False
 
 - name: update homebrew
   homebrew: update_homebrew=yes
-  sudo: false
+  sudo: False
 
 - name: install and upgrade homebrew packages
   homebrew:
@@ -36,4 +36,4 @@
     install_options={{ item.install_option | default('') }}
   with_items: homebrew_packages
   when: homebrew_packages
-  sudo: false
+  sudo: False
