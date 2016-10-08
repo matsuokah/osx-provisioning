@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROVISIONING_HOME=$(cd $(dirname ${BASH_SOURCE:-$0})/../; && pwd)
+PROVISIONING_HOME=$(cd $(dirname ${BASH_SOURCE:-$0})/../ && pwd)
 
 function print_context() {
   echo =======================
