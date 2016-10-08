@@ -1,4 +1,3 @@
----
 homebrew_repositories: []
 
 homebrew_packages:
@@ -44,4 +43,5 @@ mas_applications:
   - {name: 'CCMenu', store_hash: 603117688}
   - {name: 'Apple Configurator 2', store_hash: 1037126344}
 
+    
 # vim:ft=ansible:
