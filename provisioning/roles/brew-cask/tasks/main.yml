@@ -1,11 +1,11 @@
 ---
 - name: tap external homebrew_cask repositories
   homebrew_tap: tap=caskroom/cask state=present
-  sudo: false
+  become: false
 
 - name: update homebrew_cask
   homebrew: name=brew-cask state=latest
-  sudo: false
+  become: false
 
 - name: install and upgrade homebrew_cask packages
   homebrew_cask: >
@@ -13,4 +13,4 @@
     state={{ item.state | default('present') }}
   with_items: homebrew_cask_packages
   when: homebrew_cask_packages
-  sudo: false
+  become: false

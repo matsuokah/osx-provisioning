@@ -1,7 +1,7 @@
 ---
 - name: OSX Local Provisioner
   hosts: local
-  sudo: no
+  become: no
   pre_tasks:
     - stat: path=~/.ssh
       register: ssh 
