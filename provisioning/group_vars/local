@@ -16,28 +16,6 @@ homebrew_packages:
   - go
   - mas
 
-homebrew_cask_packages:
-  - 1password
-  - alfred
-  - bettertouchtool
-  - caffeine
-  - dash
-  - dropbox
-  - gas-mask
-  - google-chrome
-  - google-japanese-ime
-  - intellij-idea
-  - iterm2
-  - karabiner
-  - kindle
-  - music-manager
-  - sequel-pro
-  - skitch
-  - skype
-  - slack
-  - vagrant
-  - virtualbox
-
 mas_applications:
   - {name: 'Slack', store_hash: 803453959}
   - {name: 'CCMenu', store_hash: 603117688}

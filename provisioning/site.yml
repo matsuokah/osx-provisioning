@@ -10,12 +10,10 @@
     - brew
     - defaults
     - mas
-    - brew-cask
 
     # Configurations
     - git
     - vim
-    - xcode
     - zsh
     - {
       role: ssh,

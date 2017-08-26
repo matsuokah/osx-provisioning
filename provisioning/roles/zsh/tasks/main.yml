@@ -55,7 +55,7 @@
   when: antigen.stat.exists
 
 - name: download antigen
-  get_url: url=https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh dest=~/.zsh/antigen.zsh force=True
+  get_url: url=https://git.io/antigen dest=~/.zsh/antigen.zsh force=True
 
 - name: deploy zshrc
   template: src=zshrc.j2 dest=~/.zshrc force=True
@@ -82,7 +82,7 @@
   ignore_errors: True
 
 - name: create symlink
-  file: src=~/.antigen/repos/.zprezto dest=~/.zprezto state=link
+  file: src=~/.antigen/bundles/sorin-ionescu/prezto dest=~/.zprezto state=link
 
 - stat: path=/tmp/.zshrc
   register: tmp_zshrc

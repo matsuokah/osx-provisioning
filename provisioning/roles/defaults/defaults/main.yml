@@ -58,23 +58,6 @@ mac_defaults_settings:
     type: bool,
     value: true,
   }
-  # Trackpad
-
-  # Enable clicking by tap
-  - {
-    domain: com.apple.driver.AppleBluetoothMultitouch.trackpad,
-    key: Clicking,
-    type: int,
-    value: 1,
-  }
-
-  # Enable Look up & data detectors with The Three Finger Tap
-  - {
-    domain: com.apple.driver.AppleBluetoothMultitouch.trackpad,
-    key: TrackpadThreeFingerTapGesture,
-    type: int,
-    value: 2,
-  }
 
   # Dock
   - {
