@@ -76,7 +76,7 @@ mac_defaults_settings:
     domain: com.apple.dock,
     key: orientation,
     type: string,
-    value: "left",
+    value: "right",
   }
   - {
     domain: com.apple.dock,
