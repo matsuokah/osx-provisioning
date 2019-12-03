@@ -2,19 +2,15 @@ homebrew_repositories: []
 
 homebrew_packages:
   - ag
-  - autojump
-  - macvim
-  - node
+  - nvm
   - peco
   - tig
   - tmux
   - tree
-  - vim
-  - zsh
   - zsh-completions
   - zsh-syntax-highlighting
-  - go
   - mas
+  - rbenv
 
 mas_applications:
   - {name: 'Slack', store_hash: 803453959}
